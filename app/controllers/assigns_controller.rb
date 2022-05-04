@@ -25,6 +25,7 @@ class AssignsController < ApplicationController
   def assign_params
     params[:email]
   end
+  
 
   def assign_destroy(assign, assigned_user)
     if assigned_user == assign.team.owner
