@@ -14,12 +14,12 @@
 
     <div class="user-panel mt-3 pb-3 mb-3">
       <div class="info">
-        <a href="#" class="d-block mb-1">アジェンダ作成</a>
+        <a href="#" class="d-block mb-1"><%= I18n.t('views.messages.create_agenda') %></a>
         <%= form_with model: :agenda, scope: :post, url: team_agendas_path(@working_team), local: true do |form| %>
           <div class="input-group input-group-sm">
-            <%= text_field_tag :title, '', { class: 'form-control', placeholder: 'タイトル入力' } %>
+            <%= text_field_tag :title, '', { class: 'form-control', placeholder: I18n.t('views.messages.input_agenda_title') } %>
             <span class="input-group-append">
-              <button type="submit" class="btn btn-info btn-flat">作成</button>
+              <button type="submit" class="btn btn-info btn-flat"><%= I18n.t('views.button.create') %></button>
             </span>
           </div>
         <% end %>
@@ -30,23 +30,13 @@
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <% @working_team.agendas.each do |agenda| %>
           <li class="nav-item has-treeview menu-open">
-            <p class="nav-link">
-              <a href="#" >
-                <i class="fa fa-circle-o nav-icon"></i>
+            <a href="#" class="nav-link">
+              <i class="fa fa-circle-o nav-icon"></i>
+              <p>
                 <%= agenda.title %>
                 <i class="right fa fa-angle-left"></i>
-              </a>  
-              <% if @working_team.owner==current_user||agenda.user == current_user %>　<%= link_to '削除', agenda_path(agenda), method: :delete, class: 'btn btn-sm btn-danger' %><% end %>
-           </p>
-                 
-            <!--<a href="#" class="nav-link">-->
-            <!--  <i class="fa fa-circle-o nav-icon"></i>-->
-            <!--  <p>-->
-            <!--    <#%= agenda.title %>-->
-            <!--    <i class="right fa fa-angle-left"></i>-->
-            <!--  </p>-->
-            <!--</a>-->
-
+              </p>
+            </a>
             <ul class="nav nav-treeview" style="display: block;">
               <% agenda.articles.each do |article| %>
                 <li class="nav-item">
@@ -57,12 +47,11 @@
               <% end %>
               <li class="nav-item">
                 <%= link_to new_agenda_article_path(agenda), class: 'nav-link' do %>
-                  <p>+ 記事を作成する</p>
+                  <p>+ <%= I18n.t('views.messages.create_article') %></p>
                 <% end %>
               </li>
             </ul>
           </li>
-          
         <% end %>
       </ul>
     </nav>
