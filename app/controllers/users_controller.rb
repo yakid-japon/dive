@@ -22,3 +22,4 @@ class UsersController < ApplicationController
     params.require(:user).permit(:email, :icon, :keep_team_id)
   end
 end
+
